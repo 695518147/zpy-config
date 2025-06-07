@@ -29,7 +29,6 @@ function ip() {
     # 获取本地IP
     local local_ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}' | head -n 1)
     echo -e "${BOLD}${INFO}🏠 本地IP: ${NC}${ITALIC}${local_ip}${NC}"
-    echo "${local_ip}" | tr -d "[:space:]" | pbcopy
     # 获取公网IP
     local public_ip=$(curl -s "http://myip.ipip.net" | awk -F '：' '{print $2}' | awk '{print $1}')
     echo -e "${BOLD}${INFO}🌐 公网IP: ${NC}${ITALIC}${public_ip}${NC}"
@@ -45,7 +44,7 @@ function dev_env_info() {
 }
 
 # 获取一言
-HITOKOTO=$(curl -s "https://v1.hitokoto.cn/" | jq -r '.hitokoto')
+HITOKOTO=$(curl -s "https://api.xygeng.cn/one" | jq -r '.data.content')
 
 # 计算字符串显示宽度的函数
 get_string_width() {
